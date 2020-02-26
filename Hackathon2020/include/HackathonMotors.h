@@ -18,7 +18,7 @@ class HackathonMotors {
         
         void moveForwardWDelay(uint16_t speed, uint16_t delayInMilli);
         void moveBackwardsWDelay(uint16_t speed, uint16_t delayInMilli);
-
+        void setSpeeds(uint16_t speed1,uint16_t speed2);
         void turnRightWDelay(uint16_t speed, uint16_t delayInMilli);
         void turnLeftWDelay(uint16_t speed, uint16_t delayInMilli);
         void turnRightWAngle(uint16_t speed, int32_t angleInDegrees);

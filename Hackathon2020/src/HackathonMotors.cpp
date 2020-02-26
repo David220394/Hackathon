@@ -23,6 +23,9 @@ void HackathonMotors::stop(){
 void HackathonMotors::moveForward(uint16_t speed){
     motors.setSpeeds(speed, speed);
 }
+void HackathonMotors::setSpeeds(uint16_t speed1,uint16_t speed2){
+    motors.setSpeeds(speed1, speed2);
+}
 
 void HackathonMotors::moveBackwards(uint16_t speed){
     motors.setSpeeds(-speed, -speed);

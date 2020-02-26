@@ -3,6 +3,13 @@
 #include "HackathonMotors.h"
 #include "HackathonIRSensors.h"
 
+Zumo32U4LCD lcd;
+
+Zumo32U4ButtonA buttonA;
+Zumo32U4ButtonB buttonB;
+Zumo32U4ButtonC buttonC;
+Zumo32U4Buzzer buzzer;
+
 #define MOTOR_FORWARD_SPEED 150
 #define MOTOR_FORWARD_MAX_SPEED 400
 #define MOTOR_REVERSE_SPEED 200
@@ -27,9 +34,6 @@
 
 #define TARGET_ACQUIRED_SENSIBILITY 1
 
-Zumo32U4LCD lcd;
-Zumo32U4ButtonA buttonA;
-Zumo32U4Buzzer buzzer;
 int right_threshold;
 int left_threshold;
 HackathonMotors hackathonMotors;
@@ -82,14 +86,107 @@ void setup()
   //initiateCountdown();
 }
 
+void StopMotor(){
+  hackathonMotors.setSpeeds(0,0);
+  delay(500);
+}
+
+void MoveFwdLeft_180(int milli){
+  hackathonMotors.setSpeeds(100,180);
+  delay((int)(3.35 * milli));
+  StopMotor();
+}
+
+void MoveFwdRight_180(int milli){
+  hackathonMotors.setSpeeds(180,100);
+  delay((int)(3.35 * milli));
+  StopMotor();
+}
+
+void MoveFwd(int milli){
+  hackathonMotors.setSpeeds(120,100);
+  delay((int)(3.35 * milli));
+  StopMotor();
+}
+
+void MoveBckRight_180(int milli){
+  hackathonMotors.setSpeeds(-100,-180);
+  delay((int)(3.35 * milli));
+  StopMotor();
+}
+
+void MoveBckLeft_180(int milli){
+  hackathonMotors.setSpeeds(-160,-100);
+  delay((int)(3.35 * milli));
+  StopMotor();
+}
+
+
+void MoveBck(int milli){
+  hackathonMotors.setSpeeds(-100,-110);
+  delay((int)(3.35 * milli));
+  StopMotor();
+}
+
+
+void ARotateLeft(int degree){
+  float perDegree = 12.5;
+  hackathonMotors.setSpeeds(-90,90);
+  delay((int)(perDegree*degree));
+  StopMotor();
+}
+
+
+void ARotateRight(int degree){
+  float perDegree = 12.5;
+  hackathonMotors.setSpeeds(90,-90);
+  delay((int)(perDegree*degree));
+  StopMotor();
+}
+
+
+void Move10Times(){
+  int count = 0;
+  while(count < 10)
+  {
+    hackathonMotors.setSpeeds(50, 50);
+    delay(5000);
+    hackathonMotors.setSpeeds(0, 0);
+    count = count + 1;
+  }
+  hackathonMotors.setSpeeds(0, 0); 
+}
 
 void loop()
 {
    initiateCountdown();
    //hackathonMotors.moveForwardWDelay(MOTOR_FORWARD_SPEED,90);
-   hackathonMotors.turnLeftWDelay(MOTOR_TURN_SPEED,450);
+   //1
+    ARotateLeft(5);
+    ARotateLeft(4);
+    ARotateLeft(3);
+    //2
+    MoveBckLeft_180(65);
+    //3
+    MoveFwdLeft_180(55);
+   //4
+    ARotateLeft(5);
+    ARotateLeft(4);
+    ARotateLeft(3);
+    //5
+     MoveBck(125);
+    // //6
+    ARotateRight(5);
+    ARotateRight(4);
+    ARotateRight(3);
+    ARotateRight(3);
+    //ARotateRight(2);
+    //ARotateRight(1);
+    // //7
+     MoveFwdRight_180(75);
+    
    //hackathonMotors.moveBackwardsWDelay(MOTOR_FORWARD_SPEED,90);
 
 }
 
-  
+
