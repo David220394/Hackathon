@@ -180,10 +180,10 @@ void loop()
     ARotateRight(4);
     ARotateRight(3);
     ARotateRight(3);
-    //ARotateRight(2);
+    ARotateRight(1);
     //ARotateRight(1);
     // //7
-     MoveFwdRight_180(75);
+     MoveFwdRight_180(80);
     
    //hackathonMotors.moveBackwardsWDelay(MOTOR_FORWARD_SPEED,90);
 
